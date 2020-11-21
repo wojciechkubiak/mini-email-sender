@@ -1,6 +1,14 @@
 require('dotenv').config();
 
-const nodeOutlook = require('nodejs-nodemailer-outlook')
+// const nodeOutlook = require('nodejs-nodemailer-outlook');
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: process.env.MAIL,
+        pass: process.env.PASSWORD
+    }
+});
 const qs = require('querystring')
 
 const requestHandler = (req, res) => {
@@ -13,6 +21,8 @@ const requestHandler = (req, res) => {
     const url = req.url;
     const method = req.method;
 
+    res.writeHead(200, headers);
+
 
     if(url === "/" && method === "POST") {
         const body = [];
@@ -24,30 +34,23 @@ const requestHandler = (req, res) => {
             const parsedBody = Buffer.concat(body).toString();
             const json = qs.parse(parsedBody);
 
-            sendMail(json.email, json.subject, `${json.content}\n${json.email}`);
-            res.writeHead(200, headers);
-            res.end();
+            const mailOptions = {
+                from: process.env.SENDER,
+                to: process.env.RECEIVER,
+                subject: json.subject,
+                text: `${json.content}\n\nAuthor: ${json.email}`,
+                replyTo: json.email
+            };
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                    res.end();
+                } else {
+                    res.end();
+                }
+            });
         })
     }
-
 }
 
-const sendMail = (mail, subject, content) => {
-    nodeOutlook.sendEmail({
-        auth: {
-            user: process.env.MAIL,
-            pass: process.env.PASSWORD
-        },
-        from: process.env.SENDER,
-        to: process.env.RECEIVER,
-        subject: subject,
-        text: content,
-        replyTo: mail,
-        onError: (e) => {
-            console.log(e);
-            console.log(process.env.MAIL, process.env.PASSWORD, process.env.SENDER, process.env.RECEIVER);
-        },
-        onSuccess: (i) => console.log(i)
-    })
-}
 exports.handler = requestHandler;

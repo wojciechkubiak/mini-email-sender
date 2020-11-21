@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "nodejs-nodemailer-outlook": "^1.2.3"
+    "nodejs-nodemailer-outlook": "^1.2.3",
+    "nodemailer": "^6.4.16"
   }
 }
