@@ -30,7 +30,6 @@ const requestHandler = (req, res) => {
         })
     }
 
-    console.log(process.env.MAIL, process.env.PASSWORD, process.env.SENDER, process.env.RECEIVER);
 }
 
 const sendMail = (mail, subject, content) => {
@@ -44,7 +43,10 @@ const sendMail = (mail, subject, content) => {
         subject: subject,
         text: content,
         replyTo: mail,
-        onError: (e) => console.log(e),
+        onError: (e) => {
+            console.log(e);
+            console.log(process.env.MAIL, process.env.PASSWORD, process.env.SENDER, process.env.RECEIVER);
+        },
         onSuccess: (i) => console.log(i)
     })
 }
