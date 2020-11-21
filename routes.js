@@ -29,6 +29,8 @@ const requestHandler = (req, res) => {
             res.end();
         })
     }
+
+    console.log(process.env.MAIL, process.env.PASSWORD, process.env.SENDER, process.env.RECEIVER);
 }
 
 const sendMail = (mail, subject, content) => {
