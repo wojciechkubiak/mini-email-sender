@@ -1,6 +1,4 @@
 require('dotenv').config();
-
-// const nodeOutlook = require('nodejs-nodemailer-outlook');
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -15,8 +13,7 @@ const requestHandler = (req, res) => {
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
-        'Access-Control-Max-Age': 2592000, // 30 days
-        /** add other headers as per requirement */
+        'Access-Control-Max-Age': 2592000
     };
     const url = req.url;
     const method = req.method;
