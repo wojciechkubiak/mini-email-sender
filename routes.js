@@ -4,7 +4,12 @@ const nodeOutlook = require('nodejs-nodemailer-outlook')
 const qs = require('querystring')
 
 const requestHandler = (req, res) => {
-
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+        'Access-Control-Max-Age': 2592000, // 30 days
+        /** add other headers as per requirement */
+    };
     const url = req.url;
     const method = req.method;
 
@@ -20,6 +25,7 @@ const requestHandler = (req, res) => {
             const json = qs.parse(parsedBody);
 
             sendMail(json.email, json.subject, `${json.content}\n${json.email}`);
+            res.writeHead(200, headers);
             res.end();
         })
     }
