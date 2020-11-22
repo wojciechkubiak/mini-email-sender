@@ -13,7 +13,7 @@ const requestHandler = (req, res) => {
     const url = req.url;
     const method = req.method;
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'https://5fba5a41ef271f6ae1f5eab5--affectionate-carson-cf81f1.netlify.app');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
