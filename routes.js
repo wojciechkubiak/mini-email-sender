@@ -1,6 +1,6 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer');
-const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport('SMTP', {
     service: 'Yandex',
     auth: {
         user: process.env.MAIL,
@@ -33,8 +33,7 @@ const requestHandler = (req, res) => {
                 from: process.env.SENDER,
                 to: process.env.RECEIVER,
                 subject: json.subject,
-                text: `${json.content}\n\nAuthor: ${json.email}`,
-                replyTo: json.email
+                text: `${json.content}\n\nAuthor: ${json.email}`
             };
             transporter.sendMail(mailOptions, function (error, info) {
                 if (error) {
