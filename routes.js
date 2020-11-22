@@ -27,13 +27,13 @@ const requestHandler = (req, res) => {
         });
         return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
-            const json = qs.parse(parsedBody);
+            const json = JSON.parse(parsedBody);
 
             const mailOptions = {
                 from: process.env.SENDER,
                 to: process.env.RECEIVER,
                 subject: json.subject,
-                text: `${json.content}\n\nAuthor: ${json.email}`,
+                text: `${json.content}\n\nAuthor: ${json.mail}`,
             };
             transporter.sendMail(mailOptions, function (error, info) {
                 if (error) {
