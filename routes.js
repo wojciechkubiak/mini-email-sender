@@ -10,16 +10,13 @@ const transporter = nodemailer.createTransport({
 const qs = require('querystring')
 
 const requestHandler = (req, res) => {
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
-        'Access-Control-Max-Age': 2592000
-    };
     const url = req.url;
     const method = req.method;
 
-    res.writeHead(200, headers);
-
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
 
     if(url === "/" && method === "POST") {
         const body = [];
