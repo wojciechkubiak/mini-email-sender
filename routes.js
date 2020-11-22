@@ -1,7 +1,7 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer');
-const transporter = nodemailer.createTransport('SMTP', {
-    service: 'Yandex',
+const transporter = nodemailer.createTransport( {
+    service: 'Outlook365',
     auth: {
         user: process.env.MAIL,
         pass: process.env.PASSWORD
@@ -33,7 +33,7 @@ const requestHandler = (req, res) => {
                 from: process.env.SENDER,
                 to: process.env.RECEIVER,
                 subject: json.subject,
-                text: `${json.content}\n\nAuthor: ${json.email}`
+                text: `${json.content}\n\nAuthor: ${json.email}`,
             };
             transporter.sendMail(mailOptions, function (error, info) {
                 if (error) {
