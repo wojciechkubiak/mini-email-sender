@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 app.post("/", (req, res) => {
     const date = new Date();
+    res.setHeader('Content-Type', 'text/plain');
 
     let sql = `INSERT INTO mails(SENDER, SUBJECT, MAIL, DATE_SENT) VALUES (?)`;
     let values = [
