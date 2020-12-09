@@ -4,6 +4,7 @@ const express = require('express'),
   cors = require('cors'),
   bodyParser = require('body-parser');
 const path = require("path");
+const mysql = require('mysql2');
 const port = process.env.PORT || "8000";
 
 const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
