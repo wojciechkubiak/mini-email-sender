@@ -15,12 +15,12 @@ app.use(bodyParser.json());
 app.post("/", (req, res) => {
     const date = new Date();
 
-    let sql = `INSERT INTO mails(SENDER, SUBJECT, MAIL, DATE_SENT) VALUES (?)`;
+    let sql = `INSERT INTO mails(SENDER, SUBJECT, MAIL, DATE_SENT) VALUES (?, CURDATE())`;
     let values = [
         req.body.mail.mail,
         req.body.mail.subject,
         req.body.mail.content,
-        `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+        // `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
     ];
     connection.query(sql, [values], function(err, data, fields) {
       if (err) throw err;
