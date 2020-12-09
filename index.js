@@ -31,7 +31,7 @@ app.post("/", (req, res) => {
     })
 
     
-    res.status(200).send(`Mail send: ${values}`);
+    res.status(200).send(`Mail send: ${req.body.mail}`);
 });
 
 app.listen(port, () => {
