@@ -35,7 +35,7 @@ app.post("/", (req, res) => {
     })
 
     
-    res.status(200).send("App is on");
+    res.status(200).send(`Mail send: ${values}`);
 });
 
 app.listen(port, () => {
