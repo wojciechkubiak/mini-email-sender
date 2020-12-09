@@ -30,7 +30,7 @@ app.post("/", (req, res) => {
       if (err) throw err;
       res.json({
         status: 200,
-        message: `New mail: ${req.body.mail} | ${req.body.subject} | ${req.body.content}`
+        message: `New mail: ${req.body.mail} | ${req.body.subject} | ${req.body.content} | ${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
       })
     })
 
