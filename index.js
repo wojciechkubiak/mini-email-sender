@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 
 app.post("/", (req, res) => {
     const date = new Date();
-    res.setHeader('Content-Type', 'text/plain');
 
     let sql = `INSERT INTO mails(SENDER, SUBJECT, MAIL, DATE_SENT) VALUES (?)`;
     let values = [
@@ -30,9 +29,6 @@ app.post("/", (req, res) => {
         message: `New mail: ${req.body.mail} | ${req.body.subject} | ${req.body.content} | ${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
       })
     })
-
-    
-    res.status(200).send(`Mail send`);
 });
 
 app.listen(port, () => {
