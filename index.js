@@ -26,7 +26,7 @@ app.post("/", (req, res) => {
       if (err) throw err;
       res.json({
         status: 200,
-        message: `New mail: ${req.body.mail} | ${req.body.subject} | ${req.body.content} | ${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
+        message: `New mail: ${req.body.mail.mail} | ${req.body.mail.subject} | ${req.body.mail.content} | ${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
       })
     })
 });
