@@ -6,6 +6,8 @@ const express = require('express'),
 const path = require("path");
 const port = process.env.PORT || "8000";
 
+const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
+
 app.use(cors())
 app.use(bodyParser.json());
 
@@ -23,7 +25,7 @@ app.post("/", (req, res) => {
         req.body.content,
         `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
     ];
-    db.query(sql, [values], function(err, data, fields) {
+    connection.query(sql, [values], function(err, data, fields) {
       if (err) throw err;
       res.json({
         status: 200,
