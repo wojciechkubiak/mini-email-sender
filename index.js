@@ -12,10 +12,6 @@ const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
 app.use(cors())
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-    res.status(200).send("App is on");
-});
-
 app.post("/", (req, res) => {
     const date = new Date();
 
