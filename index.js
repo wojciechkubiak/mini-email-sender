@@ -17,9 +17,9 @@ app.post("/", (req, res) => {
 
     let sql = `INSERT INTO mails(SENDER, SUBJECT, MAIL, DATE_SENT) VALUES (?)`;
     let values = [
-        req.body.mail,
-        req.body.subject,
-        req.body.content,
+        req.body.mail.mail,
+        req.body.mail.subject,
+        req.body.mail.content,
         `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
     ];
     connection.query(sql, [values], function(err, data, fields) {
@@ -31,7 +31,7 @@ app.post("/", (req, res) => {
     })
 
     
-    res.status(200).send(`Mail send: ${req.body.mail.mail}`);
+    res.status(200).send(`Mail send`);
 });
 
 app.listen(port, () => {
